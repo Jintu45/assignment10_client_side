@@ -1,0 +1,9 @@
+.menuBar{
+    text-decoration: none;
+    padding: 0px 8px;
+    color: rgb(146, 140, 140);
+    transition: .4s ease-in-out;
+}
+.menuBar:hover{
+    color: bisque;
+}
