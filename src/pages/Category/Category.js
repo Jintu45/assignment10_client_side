@@ -6,7 +6,7 @@ const Category = () => {
     const tutorials = useLoaderData()
     return (
         <div>
-            <h2>total tutorial {tutorials.length}</h2>
+            <h2 className='text-center'>Single Card Item</h2>
             {
                 tutorials.map(tutorial => <TutorialItems
                     key={tutorial._id}
