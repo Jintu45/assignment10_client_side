@@ -6,7 +6,7 @@ const Home = () => {
     const tutorials = useLoaderData()
     return (
         <div>
-            <h1 className='text-center'>Our Services</h1>
+            <h1 className='text-center text-danger'>Our Services</h1>
             <div className='tutorial-card'>
             {
                 tutorials.map(tutorial => <TutorialItems
