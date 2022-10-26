@@ -57,8 +57,8 @@ const Header = () => {
                                     </>
                                 :
                                 <>
-                                    <Link to='/login'>Login</Link>
-                                    <Link to='/register'>Register</Link>
+                                    <Link className='ms-2 me-2' to='/login'><Button variant="primary">Login</Button></Link>
+                                    <Link to='/register'><Button variant="info">Register</Button></Link>
                                 </>
                             }
                         </Nav.Link>

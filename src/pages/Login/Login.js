@@ -1,17 +1,18 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import './Login.css'
 
 const Login = () => {
-    const {providerLogin} = useContext(AuthContext)
+    const {providerLogin, signIn} = useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider()
-
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
     const googleHandler = (provider) => {
         providerLogin(googleProvider)
         .then(result => {
@@ -22,11 +23,28 @@ const Login = () => {
             alert(error)
         })
     }
+    const signInHandle = event => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        
+        signIn(email, password) 
+        .then(result => {
+            const user = result.user
+            form.reset()
+            setError('')
+            navigate('/')
+        })
+        .catch(error => {
+            setError(error.message)
+        })
+    }
     return (
         <div>
              <Container>
                 
-                <Form className='login-form'>
+                <Form onSubmit={signInHandle} className='login-form'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name='email' placeholder="Enter email" required />
@@ -38,13 +56,13 @@ const Login = () => {
                         <Form.Control type="password" name='password' placeholder="Password" required />
                     </Form.Group>
                     <Form.Text className="text-danger">
-                           
+                           {error}
                         </Form.Text>
                     <div className='text-center'>
                         <Button className='mt-4 px-5 ' variant="primary" type="submit">
                             Login 
                         </Button>
-                        <p className='mt-3'>create have an account <Link to='/registration'>Create an account</Link> </p>
+                        <p className='mt-3'>create have an account <Link to='/register'>Create an account</Link> </p>
                     </div>
                 </Form>
     

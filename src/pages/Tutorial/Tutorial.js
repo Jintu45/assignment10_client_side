@@ -3,12 +3,13 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
+import { FaStar } from 'react-icons/fa';
 
 const Tutorial = () => {
    
     const tutorials = useLoaderData()
     console.log(tutorials)
-    const {image_url, details, title, category_id} = tutorials;
+    const {image_url, details, title, category_id, course_fee, rating} = tutorials;
     return (
         <div>
             <Container>
@@ -19,9 +20,13 @@ const Tutorial = () => {
                     <Card.Text>
                     {details}
                     </Card.Text>
+                    <div className='d-flex align-items-center justify-content-between'>
+                        <span className='mb-3'> <FaStar className='text-warning mb-1'></FaStar> {rating.number}</span>
+                    <span className='d-flex justify-content-end align-items-center mb-3 lead'>course fee: <h4 className='mb-0 text-muted'> ${course_fee}</h4></span>
+                    </div>
                     <div className='d-flex justify-content-between'>
-                        <Link to={`/category/${category_id}`}><Button variant="primary">Go to back</Button></Link>
-                        <Link><Button variant="primary">Get Access premium</Button></Link>
+                        <Link to={`/category/${category_id}`}><Button variant="dark">Go to back</Button></Link>
+                        <Link to='/course'><Button variant="primary">Get Access premium</Button></Link>
                     </div>
                 </Card.Body>
             </Card>
