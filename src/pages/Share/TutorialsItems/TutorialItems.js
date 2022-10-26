@@ -6,7 +6,6 @@ import './tutorialItems.css'
 import { FaStar, FaUser, FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 const TutorialItems = ({tutorial}) => {
-    console.log(tutorial)
     const {title, image_url, details, author, rating, total_view, _id} = tutorial;
     return (
         <div className='singleCard'>
@@ -28,7 +27,7 @@ const TutorialItems = ({tutorial}) => {
                     </Card.Text>
                     <p className='mb-1 mt-1 lead'>{author.name}</p>
                     <p> <FaStar className='mb-1 text-warning'></FaStar> {rating.number}  <span className='ms-4'> <FaUserAlt className='text-warning'></FaUserAlt> {(total_view)}</span> </p>
-                    <Link to={`/tutorials/:${tutorial._id}`}><Button variant="primary">Details course</Button></Link>
+                    <Link to={`/tutorials/${tutorial._id}`}><Button variant="primary">Details course</Button></Link>
                 </Card.Body>
             </Card>
             

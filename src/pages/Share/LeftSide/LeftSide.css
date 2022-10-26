@@ -1,0 +1,12 @@
+.link-item{
+    text-decoration: none;
+    color: rgb(24, 22, 22);
+    padding: 10px 0px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.items-section{
+    border-radius: 8px;
+    height: 490px;
+    margin-top: 39px;
+}

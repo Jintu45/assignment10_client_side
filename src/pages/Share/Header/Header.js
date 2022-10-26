@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,7 +8,9 @@ import './Header.css'
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "../../../Theme/Theme";
 import img from '../../../img/logo1.png'
-import { FaCloudMoon } from 'react-icons/fa';
+import { FaCloudMoon, FaUser } from 'react-icons/fa';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import { Button, Image } from 'react-bootstrap';
 
 const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};
@@ -19,6 +21,14 @@ const Header = () => {
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
+
+    const {user, logOut} = useContext(AuthContext)
+
+    const logOutHandler = () => {
+        logOut()
+        .then(() => {})
+        .catch(error => console.log(error))
+    }
     return (
         <div>
             <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
@@ -38,9 +48,26 @@ const Header = () => {
                         </ThemeProvider>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-
+                        <Nav.Link href="#deets">
+                            {
+                                user?.uid ?
+                                    <>
+                                        <span>{user?.displayName}</span>
+                                        <Button className='ms-2' onClick={logOutHandler} variant="danger">Logout</Button>
+                                    </>
+                                :
+                                <>
+                                    <Link to='/login'>Login</Link>
+                                    <Link to='/register'>Register</Link>
+                                </>
+                            }
+                        </Nav.Link>
+                        <Nav.Link className='d-flex align-items-center' eventKey={2} href="#memes">
+                            {
+                                user?.photoURL ?
+                                <Image style={{height:'40px'}} roundedCircle src={user.photoURL}></Image> :
+                                <FaUser></FaUser>
+                            }
                         </Nav.Link>
                         <div className='d-lg-none'>
                             <LeftSide></LeftSide>
