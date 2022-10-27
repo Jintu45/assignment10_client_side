@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import './Login.css'
 
@@ -13,11 +13,15 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider()
     const [error, setError] = useState('')
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
+
     const googleHandler = (provider) => {
         providerLogin(googleProvider)
         .then(result => {
             const user = result.user;
             console.log(user)
+            
         })
         .catch(error => {
             alert(error)
@@ -34,7 +38,7 @@ const Login = () => {
             const user = result.user
             form.reset()
             setError('')
-            navigate('/')
+            navigate(from, {replace: true})
         })
         .catch(error => {
             setError(error.message)
