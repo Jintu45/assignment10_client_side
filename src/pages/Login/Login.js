@@ -1,9 +1,9 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { FaGoogle } from 'react-icons/fa';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import './Login.css'
@@ -15,7 +15,7 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/';
-
+    const githubProvider = new GithubAuthProvider()
     const googleHandler = (provider) => {
         providerLogin(googleProvider)
         .then(result => {
@@ -25,6 +25,16 @@ const Login = () => {
         })
         .catch(error => {
             alert(error)
+        })
+    }
+    const gitHubHandler = (provider) => {
+        providerLogin(githubProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(error => {
+            console.log(error)
         })
     }
     const signInHandle = event => {
@@ -72,8 +82,9 @@ const Login = () => {
     
                     <div className='text-center googleSignIn'>
                         
-                        <button onClick={googleHandler}><FaGoogle className='me-3 text-warning'></FaGoogle>Continue with google</button>
-                    
+                        <button onClick={googleHandler}><FaGoogle className='me-3 text-warning'></FaGoogle>Continue with Google</button>
+                        <br />
+                        <button onClick={gitHubHandler}><FaGithub className='me-3 text-warning'></FaGithub>Continue with Github</button>
                     </div>
                 </Container>
         </div>

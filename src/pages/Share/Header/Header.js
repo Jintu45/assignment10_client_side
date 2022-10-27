@@ -48,7 +48,7 @@ const Header = () => {
                         </ThemeProvider>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">
+                        <Nav href="#deets">
                             {
                                 user?.uid ?
                                     <>
@@ -61,7 +61,7 @@ const Header = () => {
                                     <Link to='/register'><Button variant="info">Register</Button></Link>
                                 </>
                             }
-                        </Nav.Link>
+                        </Nav>
                         <Nav.Link className='d-flex align-items-center' eventKey={2} href="#memes">
                             {
                                 user?.photoURL ?
