@@ -11,7 +11,7 @@ const LeftSide = () => {
     }, [])
     return (
         <div>
-            <h3 className='text-danger'>this si left side {categories.length}</h3>
+            <h3 className='text-danger'>Categories</h3>
             <div className=' bg-white py-4 px-2 items-section'>
             {
                 categories.map(category => <p key={category.id}>
