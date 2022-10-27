@@ -24,17 +24,17 @@ export const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/tutorials')
+                loader: () => fetch('https://assignment10-server-omega.vercel.app/tutorials')
             },
             {
                 path: '/category/:id',
                 element : <Category></Category>,
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({params}) => fetch(`https://assignment10-server-omega.vercel.app/category/${params.id}`)
             },
             {
                 path: '/tutorials/:id',
                 element: <Tutorial></Tutorial>,
-               loader : ({params})=> fetch(`http://localhost:5000/tutorials/${params.id}`)
+               loader : ({params})=> fetch(`https://assignment10-server-omega.vercel.app/tutorials/${params.id}`)
             },
             {
                 path: '/blog',

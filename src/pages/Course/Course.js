@@ -6,7 +6,7 @@ const Course = () => {
     const download = e => {
         e.preventDefault()
         axios({
-            url: "http://localhost:5000/",
+            url: "https://assignment10-server-omega.vercel.app/",
             method: "GET",
             responseType : "blob"
         })

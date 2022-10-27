@@ -5,7 +5,7 @@ const LeftSide = () => {
     const [categories, setCategories] = useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:5000/categories_item')
+        fetch('https://assignment10-server-omega.vercel.app/categories_item')
         .then(res => res.json())
         .then(data =>  setCategories(data))
     }, [])
