@@ -11,7 +11,6 @@ const Course = () => {
             responseType : "blob"
         })
         .then((res) => {
-            console.log(res)
             fileDownload(res.data, ("index.pdf"))
         })
     }

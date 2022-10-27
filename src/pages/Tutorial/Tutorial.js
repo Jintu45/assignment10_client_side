@@ -8,7 +8,6 @@ import { FaStar } from 'react-icons/fa';
 const Tutorial = () => {
    
     const tutorials = useLoaderData()
-    console.log(tutorials)
     const {image_url, details, title, category_id, course_fee, rating} = tutorials;
     return (
         <div>
